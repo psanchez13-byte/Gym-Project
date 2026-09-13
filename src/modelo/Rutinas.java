@@ -1,13 +1,14 @@
 package modelo;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
 
 public class Rutinas {
     // lista de ejercicios por grupo muscular
-    List<String> EjerciciosPecho= new ArrayList<>(List.of("Press Banca","Aperturas con polea","Press Inclinado"));
+    List<String> EjerciciosPecho= new ArrayList<>(List.of("Press Banca","Aperturas con polea","Press Inclinado","GOKU"));
 
     List<String> EjerciciosEspalda= new ArrayList<>(List.of("Remo en T","Jalon al pecho","Dominadas"));
     // Piernas
@@ -26,4 +27,18 @@ public class Rutinas {
 
 
     List<String> EjerciciosAbdomen= new ArrayList<>(List.of("plancha","crush"));
+
+
+    public void elegirEjerciciosRandom(List<String> listaEjercicios) {
+        List<String> copia = new ArrayList<>(listaEjercicios); // copia para no dañar la original
+        Random random = new Random();
+
+        for (int i = 0; i < 3; i++) {
+            int posicion = random.nextInt(copia.size());
+            System.out.println(copia.get(posicion));
+            copia.remove(posicion); // lo saco de la copia para que no vuelva a salir
+        }
+
+    }
 }
+
