@@ -3,6 +3,7 @@ import controlador.RegistroControlador;
 import datos.GestorAmins;
 import java.util.Scanner;
 import vista.VistaAdminConsola;
+import modelo.PlanSemanal;
 
 public class VistaConsola {
 
@@ -39,6 +40,9 @@ public class VistaConsola {
             } else {
                 gestor.procesarRegistro(nombre, mat, contra);
                 System.out.println("Binvendido usuario: " +nombre);
+                 PlanSemanal r = new PlanSemanal();
+                 r.elegirDias();
+
                 esValido = true;
             }
         }while (!esValido);

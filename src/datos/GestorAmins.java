@@ -10,7 +10,7 @@ public class GestorAmins {
 
     public GestorAmins(){
         admins.add(new Administrador("123456789","nure67"));
-        admins.add(new Administrador("123456789","lasde12"));
+        admins.add(new Administrador("21984678024","lasde12"));
         admins.add(new Administrador("123456789","meir69"));
         admins.add(new Administrador("21910067124","lia1515"));
     }
