@@ -12,7 +12,7 @@ public class RegistroDeLogin {
    public static void main(String[] args) {
       boolean ejecutando = true;
 
-      System.out.println("=== BIENVENIDO AL SISTEMA ===");
+      System.out.println("== BIENVENIDO AL SISTEMA ==");
 
       while (ejecutando) {
          System.out.println("\nSeleccione una opción:");
