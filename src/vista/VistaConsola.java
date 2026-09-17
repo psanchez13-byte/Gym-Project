@@ -1,8 +1,11 @@
 package vista;
+
 import controlador.RegistroControlador;
 import datos.GestorAmins;
+import java.util.List;
 import java.util.Scanner;
 import vista.VistaAdminConsola;
+import modelo.PlanSemanal;
 
 public class VistaConsola {
 
@@ -34,11 +37,17 @@ public class VistaConsola {
                     System.out.println("¡Bienvenido Administrador " + nombre + "!");
                     perfilAdmin.panelDeAdministracion();
                 }else{
-                    System.out.println("Error: Administrador no dectectado.");
+                    System.out.println("Error: Administrador no detectado.");
                 }
             } else {
                 gestor.procesarRegistro(nombre, mat, contra);
-                System.out.println("Binvendido usuario: " +nombre);
+                System.out.println("Bienvenido usuario: " +nombre);
+                PlanSemanal planUsuario = new PlanSemanal();
+                // LLamamos el metodo y guardamos los dias
+                List<Integer> misDias = planUsuario.elegirDias();
+                // imprimimos eleccion de dias
+                System.out.println("¡Excelente! Tus dias de entrenamiento son: " + misDias);
+
                 esValido = true;
             }
         }while (!esValido);
