@@ -40,9 +40,8 @@ public class VistaConsola {
             } else {
                 gestor.procesarRegistro(nombre, mat, contra);
                 System.out.println("Binvendido usuario: " +nombre);
-                 PlanSemanal r = new PlanSemanal();
-                 r.elegirDias();
-
+                 PlanSemanal plan = new PlanSemanal();
+                 plan.elegirDias();
                 esValido = true;
             }
         }while (!esValido);

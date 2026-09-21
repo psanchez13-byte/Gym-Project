@@ -8,6 +8,7 @@ public class PlanSemanal {
 
     public List<Integer> elegirDias() {
         List<Integer> diasElegidos = new ArrayList<>();
+        //crea una caja vacía, Su objetivo es meter exactamente 4 números ahí dentro.
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("Elige 4 días para entrenar (escribe el número, uno por uno):");
@@ -26,6 +27,8 @@ public class PlanSemanal {
                 dia = scanner.nextInt();
 
                 if (diasElegidos.contains(dia)) {
+             //El método .contains() hace toda esa validación en una sola línea,
+              // evitando que un cliente elija "Lunes" cuatro veces seguidas.
                     System.out.println("Ese día ya lo elegiste, elige uno distinto.");
                 }
             } while (diasElegidos.contains(dia));

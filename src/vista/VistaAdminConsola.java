@@ -14,8 +14,6 @@ public class VistaAdminConsola {
                     "3. Asignar nueva rutina a cliente\n" +
                     "4. Eliminar un cliente\n" +
                     "5. Cerrar sesión");
-
-
             System.out.print("\nElige una opción: ");
             op = lec.nextInt();
             lec.nextLine();

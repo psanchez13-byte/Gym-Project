@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class GestorUsuariosJSON {
-
     private final String RUTA_ARCHIVO = "usuarios.json";
     private Gson gson;
 
