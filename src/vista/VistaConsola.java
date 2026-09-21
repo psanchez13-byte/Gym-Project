@@ -1,6 +1,8 @@
 package vista;
+
 import controlador.RegistroControlador;
 import datos.GestorAmins;
+import java.util.List;
 import java.util.Scanner;
 import vista.VistaAdminConsola;
 import modelo.PlanSemanal;
@@ -39,6 +41,13 @@ public class VistaConsola {
                 }
             } else {
                 gestor.procesarRegistro(nombre, mat, contra);
+                System.out.println("Bienvenido usuario: " +nombre);
+                PlanSemanal planUsuario = new PlanSemanal();
+                // LLamamos el metodo y guardamos los dias
+                List<Integer> misDias = planUsuario.elegirDias();
+                // imprimimos eleccion de dias
+                System.out.println("¡Excelente! Tus dias de entrenamiento son: " + misDias);
+
                 System.out.println("Binvendido usuario: " +nombre);
                  PlanSemanal plan = new PlanSemanal();
                  plan.elegirDias();
