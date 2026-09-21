@@ -57,6 +57,7 @@ public class PlanSemanal {
 
    public void  generaPlan(){
         Rutinas rutinas= new Rutinas();
+ //PlanSemanal crea un objeto en memoria con todas las listas de ejercicios precargadas de la clase Rutinas.
        List<Integer> diasElegidos = elegirDias();
 
        System.out.println();
