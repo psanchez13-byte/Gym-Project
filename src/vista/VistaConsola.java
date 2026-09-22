@@ -44,10 +44,7 @@ public class VistaConsola {
                 System.out.println("Bienvenido usuario: " +nombre);
                 System.out.println("\n--- CREACIÓN DE PLAN DE ENTRENAMIENTO ---");
                 PlanSemanal planUsuario = new PlanSemanal();
-
                 planUsuario.generaPlan();
-
-
 
             }
         }while (!esValido);
