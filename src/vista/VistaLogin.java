@@ -41,6 +41,7 @@ public  class VistaLogin {
                                    revisionre.iniciarregistro();
                                    break;
                             case 3:
+                                   System.out.println("Bienvenido al perfinl de administracion: ");
                                    System.out.print("Ingrese su matrícula:");
                                    String mat = lec.nextLine();
                                    System.out.print("Ingrese su contraseña:");
