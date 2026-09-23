@@ -15,5 +15,7 @@ public class Administrador {
 
     public String getMatricula() { return matricula; }
     public String getContraseña() { return contraseña; }
+
+
 }
 
