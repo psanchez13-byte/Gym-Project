@@ -1,9 +1,9 @@
 
-import vista.VistaConsola;
+import vista.VistaRegistro;
 
 public class MainDeArranque {
     public static void main(String[] args) {
-        VistaConsola menuPrincipal = new VistaConsola();
+        VistaRegistro menuPrincipal = new VistaRegistro();
         menuPrincipal.iniciar();
     }
 }
