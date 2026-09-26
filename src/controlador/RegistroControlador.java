@@ -8,7 +8,7 @@ public class RegistroControlador {
         GestorUsuariosCSV gestor = new GestorUsuariosCSV();
         Usuario nuevoUsuario = new Usuario(nombre, matricula, contrasena);
         // 2. Creamos el objeto Usuario con los datos iniciales
-        gestor.guardarUsuarios(nuevoUsuario);
+        gestor.guardarUsuario(nuevoUsuario);
         return true;
 
 

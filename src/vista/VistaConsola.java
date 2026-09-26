@@ -1,17 +1,17 @@
 package vista;
 
 import controlador.RegistroControlador;
-import datos.GestorAmins;
-import java.util.List;
+import datos.GestorAdmins;
+
 import java.util.Scanner;
-import vista.VistaAdminConsola;
+
 import modelo.PlanSemanal;
 
 public class VistaConsola {
 
     public void iniciar (){
         RegistroControlador gestor = new RegistroControlador();
-        GestorAmins admin = new GestorAmins();
+        GestorAdmins admin = new GestorAdmins();
         VistaAdminConsola perfilAdmin = new VistaAdminConsola();
         Scanner es = new Scanner(System.in);
 

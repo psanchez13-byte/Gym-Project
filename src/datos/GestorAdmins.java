@@ -4,11 +4,11 @@ import modelo.Administrador;
 import java.util.List;
 import java.util.ArrayList;
 
-public class GestorAmins {
+public class GestorAdmins {
 
     private final List<Administrador> admins = new ArrayList<>();
 
-    public GestorAmins(){
+    public GestorAdmins(){
         admins.add(new Administrador("123456789","nure67"));
         admins.add(new Administrador("21984678024","lasde12"));
         admins.add(new Administrador("123456789","meir69"));
