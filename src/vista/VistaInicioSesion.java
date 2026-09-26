@@ -1,11 +1,11 @@
 package vista;
 
-import datos.GestorUsuariosJSON;
+import datos.GestorUsuariosCSV;
 
 import java.util.Scanner;
 
 public class VistaInicioSesion {
-    GestorUsuariosJSON revisar = new GestorUsuariosJSON();
+    GestorUsuariosCSV revisar = new GestorUsuariosCSV();
 
     public void inicioSesion (Scanner sc){
         System.out.print("Ingrese su matrícula: ");
@@ -13,7 +13,7 @@ public class VistaInicioSesion {
         System.out.print("Ingrese su contraseña: ");
         String contraLogin = sc.nextLine();
 
-        // 2. Traemos la lista del JSON y preparamos la bandera
+        // 2. Traemos la lista del CSV y preparamos la bandera
         java.util.List<modelo.Usuario> listaClientes = revisar.leerUsuarios();
         boolean clienteEncontrado = false;
 

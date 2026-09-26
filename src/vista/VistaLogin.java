@@ -1,7 +1,7 @@
 package vista;
 
 import datos.GestorAdmins;
-import datos.GestorUsuariosJSON;
+import datos.GestorUsuariosCSV;
 
 import java.util.Scanner;
 
