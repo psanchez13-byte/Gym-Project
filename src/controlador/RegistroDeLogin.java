@@ -1,5 +1,4 @@
 package controlador;
-import datos.GestorUsuariosJSON;
 
 
 public class RegistroDeLogin {

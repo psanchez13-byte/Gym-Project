@@ -1,10 +1,10 @@
 package vista;
 import java.util.Scanner;
-import datos.GestorUsuariosJSON;
+import datos.GestorUsuariosCSV;
 public class VistaAdminConsola {
     public void panelDeAdministracion(){
         Scanner lec = new Scanner(System.in);
-        GestorUsuariosJSON revisar = new GestorUsuariosJSON();
+        GestorUsuariosCSV revisar = new GestorUsuariosCSV();
 
         int op =0;
 
