@@ -18,7 +18,7 @@ public  class VistaLogin {
               do {
                      System.out.println("--- MENÚ DEL GIMNASIO ---");
                       System.out.println("\n1. Iniciar sesion\n" +
-                             "2. Registro\n" + "3.Iniciar como admin");
+                             "2. Registro\n" + "3. Iniciar como admin\n" + "4. Salir");
 
                      System.out.print("\nElige una opción: ");
                      op = lec.nextInt();
@@ -55,10 +55,14 @@ public  class VistaLogin {
                                           System.out.println("Error: Administrador no dectectado.");
                                            inicio(lec);
                                    }
+                                   break;
+                            case 4:
+                                   System.out.println("\nSaliendo del sistema...");
+                                   break;
+                            default:
+                                   System.out.println("\nError: Opción no válida. Intente nuevamente.");
                      }
-                     while (op != 4) ;
-                     lec.close();
 
-              }while (!esValido);
+              }while (op != 4) ;
        }
 }
