@@ -3,6 +3,7 @@ package vista;
 import modelo.PlanSemanal;
 import modelo.Usuario;
 import java.util.Scanner;
+import datos.GestorRutinasCSV;
 
 public class VistaDashboardUsuario {
 

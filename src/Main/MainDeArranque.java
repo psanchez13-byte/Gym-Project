@@ -1,6 +1,6 @@
+package Main;
 
 import vista.VistaLogin;
-import vista.VistaRegistro;
 
 import java.util.Scanner;
 
