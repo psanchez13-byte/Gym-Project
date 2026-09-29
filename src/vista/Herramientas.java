@@ -12,6 +12,16 @@ public class Herramientas {
         label.setFont(new Font("Arial", Font.BOLD, letra));
         return label;
     }
+//
+//    public static JTextArea crearCuadrosDeTexto(int x, int y, int largo , int alto, String texto){
+//        JTextArea textA = new JTextArea();
+//        textA.setBounds(x, y, largo, alto);
+//        textA.setText(texto);
+//        textA.setFont(new Font("Arial", Font.PLAIN, alto));
+//        textA.setEditable(false); //  solo pueda leer, no borrar el texto
+//        textA.setBackground(null); // Quita el fondo blanco para que se mezcle con la ventana
+//        return textA;
+//    }
 
     public static JTextField crearTexto(int x,int y, int largo, int alto){
         JTextField txt = new JTextField();
