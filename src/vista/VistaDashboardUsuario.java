@@ -24,7 +24,7 @@ public class VistaDashboardUsuario {
             try {
                 opcion = Integer.parseInt(sc.nextLine());
             } catch (NumberFormatException e) {
-                opcion = 0; //un error controlado si escriben letras
+                opcion = 0; //un error controlado si escriben letrass
             }
 
             switch (opcion) {
