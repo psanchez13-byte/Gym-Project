@@ -27,6 +27,7 @@ public class VistaDashboardUsuario {
                 opcion = 0; //un error controlado si escriben letrass
             }
 
+
             switch (opcion) {
                 case 1:
                     System.out.println("\n--- MI PERFIL ---");

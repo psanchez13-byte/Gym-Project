@@ -7,7 +7,6 @@ import java.util.Scanner;
 
 public class VistaInicioSesion {
     GestorUsuariosCSV revisar = new GestorUsuariosCSV();
-
     public void inicioSesion (Scanner sc){
         System.out.print("Ingrese su matrícula: ");
         String matLogin = sc.nextLine();

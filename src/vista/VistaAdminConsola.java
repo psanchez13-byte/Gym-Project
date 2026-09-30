@@ -34,15 +34,21 @@ public class VistaAdminConsola {
                     break;
 
                 case 2:
+                    System.out.println("En mantenimiento... ");
 
                     break;
 
                 case 3:
+                    System.out.println("En mantenimiento... ");
                     break;
                 case 4:
+                    System.out.println("En mantenimiento... ");
                     break;
 
                 case 5:
+                    VistaLogin menuNv = new VistaLogin();
+                    menuNv.inicio(lec);
+
                     break;
             }
 
