@@ -21,20 +21,34 @@ public class PlanSemanal {
         System.out.println("7. Domingo");
 
         for (int i = 0; i < 4; i++) {
-            int dia;
-            do {
-                System.out.println("Elige el día " + (i + 1) + ":");
+            int dia=0;
+            boolean valido = false;
+            while (!valido) {
+                // 1) Verificar que sea un número
+                if (!scanner.hasNextInt()) {
+                    System.out.println("Error: solo se aceptan números.");
+                    scanner.next(); // descartar el token inválido
+                    continue; // Vuelve a evaluar el 'while (!valido)' desde el principio
+                }
                 dia = scanner.nextInt();
 
-                if (diasElegidos.contains(dia)) {
-             //El método .contains() hace toda esa validación en una sola línea,
-              // evitando que un cliente elija "Lunes" cuatro veces seguidas.
-                    System.out.println("Ese día ya lo elegiste, elige uno distinto.");
-                }
-            } while (diasElegidos.contains(dia));
+                // 2) Verificar que esté en rango 1-7
+                if (dia < 1 || dia > 7) {
+                    System.out.println("Error: el número debe estar entre 1 y 7.");
+                    continue;
 
-            diasElegidos.add(dia);
+                }
+                // 3) Verificar que no esté repetido
+                if (diasElegidos.contains(dia)) {
+                    System.out.println("Ese día ya lo elegiste, elige uno distinto.");
+                    continue;
+                }
+                valido = true; // pasó todas las validaciones
+
+                diasElegidos.add(dia);
+            }
         }
+
         return diasElegidos;
     }
     public String nombreDia(int dia) {

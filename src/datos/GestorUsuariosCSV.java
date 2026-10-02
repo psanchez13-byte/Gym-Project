@@ -71,7 +71,6 @@ public class GestorUsuariosCSV {
                     .append(u.getNivel()).append(DELIMITADOR)
                     .append(u.getDiasDisponibles());
 
-
             // Escribimos la línea y damos un salto de línea para el próximo usuario
             escritor.write(lineaCsv.toString());
             escritor.newLine();

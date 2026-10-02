@@ -10,7 +10,7 @@ public class PlanSemanalTest {
     @Test
     public void testElegirDias_EntradaValida() {
         // 1. Simulamos que un usuario teclea "1", "2", "3" y "4" y presiona Enter
-        String entradaSimulada = "1\n2\n3\n4\n";
+        String entradaSimulada = "b\n1\n2\n3\n4\n";
         //  lea nuestro String en lugar del teclado real
         System.setIn(new ByteArrayInputStream(entradaSimulada.getBytes()));
 
