@@ -1,5 +1,14 @@
 
 ### IntelliJ IDEA ###
+# Excluir la carpeta de configuración de IntelliJ
+.idea/
+*.iml
+
+# Excluir las carpetas de compilación de Maven / Gradle
+target/
+build/
+
+
 out/
 !**/src/main/**/out/
 !**/src/test/**/out/
