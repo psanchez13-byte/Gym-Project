@@ -1,68 +1,55 @@
 package vista;
+import javax.swing.*;
+import java.awt.Color;
 
-import datos.GestorAdmins;
-import datos.GestorUsuariosCSV;
+public class VistaLogin extends JFrame {
 
-import java.util.Scanner;
+    public VistaLogin(){
+        setTitle("Campus-Fit ");
+        setSize(500, 500);// Ancho de 400px y alto de 450px
+        setResizable(false); // Impide que la ventana se pueda maximizar o achicar
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setLayout(null);//desactivar organizador automatico
+        setLocationRelativeTo(null);//aparecer en el centro de la pantalla
+        getContentPane().setBackground(Color.WHITE);
 
-public  class VistaLogin {
+        Color azulCampus = new Color(20, 70, 160);
+        Color blancoTexto = new Color(255, 255, 255);
+        JPanel barraSuperior = Herramientas.crearPanel(azulCampus, 0, 0, 500, 60);
 
-       public void inicio(Scanner lec) {
-//              Scanner lec = new Scanner(System.in);
-              VistaInicioSesion inSesion = new VistaInicioSesion();
-              VistaRegistro revisionre = new VistaRegistro();
-              VistaAdminConsola perfilAdmin = new VistaAdminConsola();
-              GestorAdmins admin = new GestorAdmins();
-              int op = 0;
-              boolean esValido = false;
-              do {
-                     System.out.println("--- MENÚ DEL GIMNASIO ---");
-                      System.out.println("\n1. Iniciar sesion\n" +
-                             "2. Registro\n" + "3. Iniciar como admin\n" + "4. Salir");
+        JLabel lblTitulo = Herramientas.crearLabels(18, "Bienvenido a campus fit", 135, 20, 300, 40);
+        lblTitulo.setForeground(blancoTexto);
+        barraSuperior.add(lblTitulo);
+        JLabel logo = Herramientas.crearImagen("/Recursos/logo-gym1.png", 110, 59, 286, 286);
 
-                     System.out.print("\nElige una opción: ");
-                     op = lec.nextInt();
-                     lec.nextLine();
+        JButton btnInicio = Herramientas.crearBoton("Inicio de sesión", 150, 280, 200, 40, e-> btnInicio());
+        JButton btnRegistro = Herramientas.crearBoton("Registro", 150, 340, 200, 40,e-> btnRegistro() );
+        JButton btnAyuda = Herramientas.crearBoton("Instructivo de ayuda", 150, 400, 200, 40, e -> btnInstructivo());
 
-                     switch (op) {
-                            case 1:
-                                   System.out.println("Iniciando sesion....");
-                                   inSesion.inicioSesion(lec);
-                                   break;
-                            case 2:
-                                   System.out.println("Registrando...");
-                                    revisionre.iniciarregistro();
-                                   break;
-                            case 3:
-                                   System.out.println("\nBienvenido al perfinl de administracion: ");
-                                   System.out.print("\nIngrese su Nombre:");
-                                   String nombre = lec.nextLine();
-                                   System.out.print("Ingrese su matrícula:");
-                                   String mat = lec.nextLine();
-                                   System.out.print("Ingrese su contraseña:");
-                                   String contra = lec.nextLine();
-                                   if (nombre.isEmpty() || mat.isEmpty() || contra.isEmpty()) {
-                                          System.out.println("Error: Ningún campo puede estar vacío.");
-                                          continue; // Repite el bucle sin cambiar esValido
-                                   }
-                                   boolean ValifacionAdm = admin.validarCredenciales(mat, contra);
+        add(barraSuperior);
+        add(btnInicio);
+        add(btnRegistro);
+        add(btnAyuda);
+        add(logo);
 
-                                   if (ValifacionAdm){
-                                          System.out.println("¡Bienvenido Administrador " + mat + "!");
-                                          perfilAdmin.panelDeAdministracion();
+        setVisible(true);
 
-                                   }else {
-                                          System.out.println("Error: Administrador no dectectado.");
-                                           inicio(lec);
-                                   }
-                                   break;
-                            case 4:
-                                   System.out.println("\nSaliendo del sistema...");
-                                   break;
-                            default:
-                                   System.out.println("\nError: Opción no válida. Intente nuevamente.");
-                     }
+    }
+    public void btnInstructivo(){
+       vistaInstructivoAyuda btnAyuda = new vistaInstructivoAyuda();
+       btnAyuda.mostrarVentana();
+    }
 
-              }while (op != 4) ;
-       }
+    public void btnInicio(){
+        VistaInicioDeSesion btnSesion = new VistaInicioDeSesion();
+        btnSesion.mostrarventaSesion();
+    }
+
+    public void btnRegistro(){
+       VistaRegistro btnRegistro = new VistaRegistro();
+       btnRegistro.mostrarVentanaRegistro();
+
+
+    }
+
 }
