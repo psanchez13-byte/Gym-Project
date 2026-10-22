@@ -6,14 +6,14 @@ public class Usuario {
     private String matricula;
     private String contraseña;
 
-    // Datos del test
+    // Datos del test físico
     private int edad;
-    private double altura; // En metros o centímetros
-    private double peso;   // En kilogramos
-    private String genero; // 'F' o 'M'
-    private int diasactivofis; // 0 a 7 días
+    private double peso;
+    private String genero; // F o M
+    private String nivel; // Resultado del test físico
+    private String diasDisponibles;
 
-    // Constructor base para registro
+    // Constructor para registro básico
     public Usuario(String nombre, String matricula, String contraseña) {
         setNombre(nombre);
         setMatricula(matricula);
@@ -21,16 +21,16 @@ public class Usuario {
     }
 
     // Constructor completo
-    public Usuario(String nombre, String matricula, String contraseña, int edad, double altura, double peso, String genero, int diasactivofis) {
+    public Usuario(String nombre, String matricula, String contraseña, int edad, double peso, String genero, String nivel, String diasDisponibles) {
         this(nombre, matricula, contraseña);
         setEdad(edad);
-        setAltura(altura);
         setPeso(peso);
         setGenero(genero);
-        setDiasactivofis(diasactivofis);
+        setNivel(nivel);
+        setDiasDisponibles(diasDisponibles);
     }
 
-    // --- GETTERS Y SETTERS CON VALIDACIONES ---
+    // --- GETTERS Y SETTERS CON RESTRICCIONES ---
 
     public String getNombre() {
         return nombre;
@@ -40,7 +40,7 @@ public class Usuario {
         if (nombre == null || nombre.trim().isEmpty()) {
             throw new IllegalArgumentException("El nombre no puede estar vacío.");
         }
-        this.nombre = nombre;
+        this.nombre = nombre.trim();
     }
 
     public String getMatricula() {
@@ -51,11 +51,11 @@ public class Usuario {
         if (matricula == null || matricula.trim().isEmpty()) {
             throw new IllegalArgumentException("La matrícula no puede estar vacía.");
         }
-        // Ejemplo: Valida que contenga solo números y tenga entre 10 y 12 dígitos (RUT + Año)
+        // Valida que sean entre 10 y 12 dígitos numéricos (RUT + Año)
         if (!matricula.matches("^[0-9]{10,12}$")) {
-            throw new IllegalArgumentException("La matrícula debe contener solo números (RUT + año de ingreso).");
+            throw new IllegalArgumentException("La matrícula debe contener solo números (entre 10 y 12 dígitos).");
         }
-        this.matricula = matricula;
+        this.matricula = matricula.trim();
     }
 
     public String getContraseña() {
@@ -63,7 +63,7 @@ public class Usuario {
     }
 
     public void setContraseña(String contraseña) {
-        if (contraseña == null || contraseña.length() < 6) {
+        if (contraseña == null || contraseña.trim().length() < 6) {
             throw new IllegalArgumentException("La contraseña debe tener al menos 6 caracteres.");
         }
         this.contraseña = contraseña;
@@ -80,24 +80,13 @@ public class Usuario {
         this.edad = edad;
     }
 
-    public double getAltura() {
-        return altura;
-    }
-
-    public void setAltura(double altura) {
-        if (altura <= 0) {
-            throw new IllegalArgumentException("La altura debe ser mayor a 0.");
-        }
-        this.altura = altura;
-    }
-
     public double getPeso() {
         return peso;
     }
 
     public void setPeso(double peso) {
         if (peso <= 0) {
-            throw new IllegalArgumentException("El peso debe ser mayor a 0.");
+            throw new IllegalArgumentException("El peso debe ser un valor positivo mayor a 0.");
         }
         this.peso = peso;
     }
@@ -110,17 +99,28 @@ public class Usuario {
         if (genero == null || (!genero.equalsIgnoreCase("F") && !genero.equalsIgnoreCase("M"))) {
             throw new IllegalArgumentException("El género debe ser 'F' o 'M'.");
         }
-        this.genero = genero.toUpperCase();
+        this.genero = genero.toUpperCase().trim();
     }
 
-    public int getDiasactivofis() {
-        return diasactivofis;
+    public String getNivel() {
+        return nivel;
     }
 
-    public void setDiasactivofis(int diasactivofis) {
-        if (diasactivofis < 0 || diasactivofis > 7) {
-            throw new IllegalArgumentException("Los días de actividad física deben estar entre 0 y 7.");
+    public void setNivel(String nivel) {
+        if (nivel == null || nivel.trim().isEmpty()) {
+            throw new IllegalArgumentException("El nivel no puede estar vacío.");
         }
-        this.diasactivofis = diasactivofis;
+        this.nivel = nivel.trim();
+    }
+
+    public String getDiasDisponibles() {
+        return diasDisponibles;
+    }
+
+    public void setDiasDisponibles(String diasDisponibles) {
+        if (diasDisponibles == null || diasDisponibles.trim().isEmpty()) {
+            throw new IllegalArgumentException("Los días disponibles no pueden estar vacíos.");
+        }
+        this.diasDisponibles = diasDisponibles.trim();
     }
 }
