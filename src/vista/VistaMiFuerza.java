@@ -1,66 +1,153 @@
 package vista;
 
+import controlador.FuerzaControlador;
+import modelo.LectorEjerciciosRutina.EjercicioRutina;
+import modelo.Usuario;
+
 import javax.swing.*;
 import java.awt.*;
+import java.util.List;
 
+/**
+ * Permite consultar y seleccionar los ejercicios de la rutina del usuario.
+ * Muestra las series y el objetivo indicado para cada ejercicio.
+ */
 public class VistaMiFuerza extends JFrame {
 
-    private JTextField cajaNombreEjercicio;
-    private JTextField cajaSeries;
+    private final FuerzaControlador controlador;
 
-    public void mostrarVentana() {
-        setTitle("Registro de Fuerza");
-        setSize(500, 400);
-        setResizable(false);
-        setLayout(null);
-        setLocationRelativeTo(null);
-        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        getContentPane().setBackground(Color.WHITE);
+    private JComboBox<EjercicioRutina> comboEjercicios;
+    private JLabel lblSeries;
+    private JLabel lblObjetivo;
+    private JLabel lblEstado;
 
-        Color azulCampus = new Color(20, 70, 160);
-        JPanel barraSuperior = Herramientas.crearPanel(azulCampus, 0, 0, 500, 60);
-        JLabel lblTitulo = Herramientas.crearLabels(18, "Evolución de Fuerza", 150, 10, 200, 40);
-        lblTitulo.setForeground(Color.WHITE);
-        barraSuperior.add(lblTitulo);
-        add(barraSuperior);
-
-
-        JLabel lblNombre = Herramientas.crearLabels(14, "Nombre del ejercicio:", 150, 90, 200, 20);
-        add(lblNombre);
-        cajaNombreEjercicio = Herramientas.crearTexto(150, 110, 200, 30);
-        add(cajaNombreEjercicio);
-
-        JLabel lblSeries = Herramientas.crearLabels(14, "Cantidad de series:", 150, 160, 200, 20);
-        add(lblSeries);
-        cajaSeries = Herramientas.crearTexto(150, 180, 200, 30);
-        add(cajaSeries);
-
-
-        JButton btnSiguiente = Herramientas.crearBoton("Siguiente", 150, 240, 200, 40, e -> btnSiguienteAccion());
-        add(btnSiguiente);
-
-        setVisible(true);
+    /**
+     * Prepara el controlador con el usuario que inició sesión.
+     */
+    public VistaMiFuerza(Usuario usuario) {
+        this.controlador = new FuerzaControlador(usuario);
     }
 
-    private void btnSiguienteAccion() {
-        String nombre = cajaNombreEjercicio.getText().trim();
-        String seriesStr = cajaSeries.getText().trim();
+    /**
+     * Construye la ventana y carga los ejercicios asignados.
+     */
+    public void mostrarVentana() {
+        setTitle("Mi fuerza y progreso - Campus-Fit");
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        setResizable(false);
 
-        if (nombre.isEmpty() || seriesStr.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Completa todos los campos", "Advertencia", JOptionPane.WARNING_MESSAGE);
+        JPanel contenido = new JPanel(new BorderLayout(15, 20));
+        contenido.setBackground(Color.WHITE);
+        contenido.setBorder(
+                BorderFactory.createEmptyBorder(20, 25, 20, 25)
+        );
+        setContentPane(contenido);
+
+        JLabel titulo = new JLabel(
+                "Ejercicios de mi rutina",
+                SwingConstants.CENTER
+        );
+        titulo.setFont(new Font("Arial", Font.BOLD, 22));
+        titulo.setForeground(new Color(20, 70, 160));
+        contenido.add(titulo, BorderLayout.NORTH);
+
+        // Agrupa el selector y los datos del ejercicio elegido.
+        JPanel panelEjercicio = new JPanel(new GridLayout(4, 1, 0, 12));
+        panelEjercicio.setOpaque(false);
+
+        panelEjercicio.add(new JLabel("Selecciona un ejercicio:"));
+
+        comboEjercicios = new JComboBox<>();
+        comboEjercicios.setEditable(false);
+        comboEjercicios.setPreferredSize(new Dimension(420, 32));
+        comboEjercicios.addActionListener(
+                e -> mostrarDatosEjercicio()
+        );
+        panelEjercicio.add(comboEjercicios);
+
+        lblSeries = new JLabel("Series: —");
+        panelEjercicio.add(lblSeries);
+
+        lblObjetivo = new JLabel("Objetivo por serie: —");
+        panelEjercicio.add(lblObjetivo);
+
+        contenido.add(panelEjercicio, BorderLayout.CENTER);
+
+        JPanel panelInferior = new JPanel(new BorderLayout(10, 15));
+        panelInferior.setOpaque(false);
+
+        lblEstado = new JLabel(" ");
+        panelInferior.add(lblEstado, BorderLayout.CENTER);
+
+        JButton btnCerrar = new JButton("Cerrar");
+        btnCerrar.addActionListener(e -> dispose());
+        panelInferior.add(btnCerrar, BorderLayout.SOUTH);
+
+        contenido.add(panelInferior, BorderLayout.SOUTH);
+
+        pack();
+        setLocationRelativeTo(null);
+        setVisible(true);
+
+        cargarEjercicios();
+    }
+
+    /**
+     * Solicita los ejercicios al controlador y llena el desplegable.
+     * Si ocurre un error, deshabilita el selector e informa el problema.
+     */
+    private void cargarEjercicios() {
+        comboEjercicios.removeAllItems();
+
+        try {
+            List<EjercicioRutina> ejercicios =
+                    controlador.obtenerEjerciciosAsignados();
+
+            for (EjercicioRutina ejercicio : ejercicios) {
+                comboEjercicios.addItem(ejercicio);
+            }
+
+            comboEjercicios.setEnabled(true);
+            lblEstado.setText(
+                    "Ejercicios disponibles: " + ejercicios.size()
+            );
+
+            mostrarDatosEjercicio();
+
+        } catch (IllegalStateException | IllegalArgumentException ex) {
+            comboEjercicios.setEnabled(false);
+            lblEstado.setText("No se pudieron cargar los ejercicios.");
+
+            JOptionPane.showMessageDialog(
+                    this,
+                    ex.getMessage(),
+                    "Consulta de rutina",
+                    JOptionPane.WARNING_MESSAGE
+            );
+        }
+    }
+
+    /**
+     * Actualiza las etiquetas según el ejercicio seleccionado.
+     * Conserva la unidad de medida definida en la rutina.
+     */
+    private void mostrarDatosEjercicio() {
+        EjercicioRutina ejercicio =
+                (EjercicioRutina) comboEjercicios.getSelectedItem();
+
+        if (ejercicio == null) {
+            lblSeries.setText("Series: —");
+            lblObjetivo.setText("Objetivo por serie: —");
             return;
         }
 
-        try {
-            int cantidadSeries = Integer.parseInt(seriesStr);
+        lblSeries.setText("Series: " + ejercicio.getSeries());
 
-            // Pasamos a la siguiente ventana enviándole los datos
-            this.dispose();
-            VistaMiFuerzaSeries detalle = new VistaMiFuerzaSeries(nombre, cantidadSeries);
-            detalle.mostrarVentana();
-
-        } catch (NumberFormatException ex) {
-            JOptionPane.showMessageDialog(this, "Las series deben ser un número", "Error", JOptionPane.ERROR_MESSAGE);
-        }
+        lblObjetivo.setText(
+                "Objetivo por serie: "
+                        + ejercicio.getObjetivo()
+                        + " "
+                        + ejercicio.getUnidad()
+        );
     }
 }
