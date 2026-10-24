@@ -43,7 +43,7 @@ public class VistaMenuGym extends JFrame {
         barraSuperior.add(lblTitulo);
         add(barraSuperior);
 
-        JLabel logo = Herramientas.crearImagen("/Recursos/logo-gym1.png", 150, 80, 200, 150);
+        JLabel logo = Herramientas.crearImagen("/Recursos/logo-gym1.png", 115, 50, 290, 280);
         add(logo);
 
         btnMiprogreso = Herramientas.crearBoton("Mi Progreso", 150, 260, 200, 40, e -> btnMiprogresoAccion());

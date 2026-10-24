@@ -22,6 +22,9 @@ public class VistaProgresoGym extends JFrame {
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
+        JLabel logo = Herramientas.crearImagen("/Recursos/imagen_coach.png", 140, 50, 250, 260);
+        add(logo);
+
 
         JButton btnmipeso = Herramientas.crearBoton("Mi peso y progreso", 150, 280, 200, 40, e-> btnmipeso());
         JButton btnevoFuerza = Herramientas.crearBoton("Registrar evolucion de mi fuerza", 150, 340, 200, 40,e-> btnevoFuerza() );
