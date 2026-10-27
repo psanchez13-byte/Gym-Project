@@ -24,16 +24,13 @@ public class ProgresoControlador {
         this.gestor = new GestorProgresoJSON();
         this.seguimiento = new SeguimientoMensual();
     }
-
     // Recupera solamente el historial del usuario autenticado.
     public HistorialProgreso obtenerHistorial() {
         return gestor.leerProgreso(usuario.getMatricula());
     }
-
     // Guarda una medición respetando el plazo mensual.
     public HistorialProgreso registrarPeso(String textoPeso) {
         double peso;
-
         try {
             peso = Double.parseDouble(
                     textoPeso.trim().replace(',', '.')
@@ -49,10 +46,8 @@ public class ProgresoControlador {
                     "El peso debe ser un número positivo y válido."
             );
         }
-
         // Cargamos los datos nuevamente antes de incorporar la medición.
         HistorialProgreso historial = obtenerHistorial();
-
         boolean registrado = seguimiento.registrarPesoMensual(
                 historial, peso, LocalDate.now()
         );

@@ -12,7 +12,9 @@ import java.awt.*;
 public class VistaProgresoGym extends JFrame {
 
     private final Usuario usuarioActual;
-
+       private JButton btnCerrar;
+       private JButton btnFuerza;
+       private JButton btnmipeso;
     /**
      * Conserva al usuario cuyos datos se consultarán.
      */
@@ -26,61 +28,38 @@ public class VistaProgresoGym extends JFrame {
         this.usuarioActual = usuarioActual;
     }
 
-    /**
-     * Construye y muestra el menú de progreso del usuario.
-     */
     public void mostrarventa() {
         setTitle("Mi progreso - Campus-Fit");
-        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        setSize(500, 550); // Mantenemos el estándar de "Talla M"
         setResizable(false);
+        setLayout(null);
 
-        JPanel contenido = new JPanel(new BorderLayout(15, 25));
-        contenido.setBackground(Color.WHITE);
-        contenido.setBorder(
-                BorderFactory.createEmptyBorder(25, 35, 25, 35)
-        );
-        setContentPane(contenido);
+        setLocationRelativeTo(null); // Centrado en la pantalla
 
-        JLabel titulo = new JLabel(
-                "Mi progreso", SwingConstants.CENTER
-        );
-        titulo.setFont(new Font("Arial", Font.BOLD, 22));
-        titulo.setForeground(new Color(20, 70, 160));
-        contenido.add(titulo, BorderLayout.NORTH);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        getContentPane().setBackground(Color.WHITE);
+
+        Color azulCampus = new Color(20, 70, 160);
+        JPanel barraSuperior = Herramientas.crearPanel(azulCampus, 0, 0, 500, 60);
+
+        JLabel lblTitulo = Herramientas.crearLabels(18, "Mi progreso ", 100, 10, 300, 40);
+        lblTitulo.setForeground(Color.WHITE); // Letras blancas
+        barraSuperior.add(lblTitulo);
+        add(barraSuperior);
+        JLabel logo = Herramientas.crearImagen("/Recursos/imagen_coach.png", 140, 59, 250, 240);
+        add(logo);
 
         JPanel panelBotones = new JPanel(new GridLayout(2, 1, 0, 15));
         panelBotones.setOpaque(false);
         panelBotones.setPreferredSize(new Dimension(300, 110));
 
-        JButton btnPeso = new JButton("Mi peso y progreso");
-        btnPeso.addActionListener(e -> btnmipeso());
-        panelBotones.add(btnPeso);
 
-        JButton btnFuerza = new JButton("Mi fuerza y progreso");
-        btnFuerza.addActionListener(e -> btnevoFuerza());
-        panelBotones.add(btnFuerza);
-
-        contenido.add(panelBotones, BorderLayout.CENTER);
-
-        JButton btnCerrar = new JButton("Cerrar");
-        btnCerrar.addActionListener(e -> dispose());
-        contenido.add(btnCerrar, BorderLayout.SOUTH);
-
-        pack();
-        setLocationRelativeTo(null);
-        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-
-        JLabel logo = Herramientas.crearImagen("/Recursos/imagen_coach.png", 140, 50, 250, 260);
-        add(logo);
-
-
-        JButton btnmipeso = Herramientas.crearBoton("Mi peso y progreso", 150, 280, 200, 40, e-> btnmipeso());
-        JButton btnevoFuerza = Herramientas.crearBoton("Registrar evolucion de mi fuerza", 150, 340, 200, 40,e-> btnevoFuerza() );
-
-        add(btnevoFuerza);
+        btnFuerza = Herramientas.crearBoton("Mi fuerza y progreso", 150, 260, 200, 40, e -> btnevoFuerza());
+        btnmipeso = Herramientas.crearBoton("Mi peso y progreso", 150, 320, 200, 40, e -> btnmipeso());
+        btnCerrar = Herramientas.crearBoton("Salir", 150, 380, 200, 40, e -> dispose());
+        add(btnCerrar);
         add(btnmipeso);
-
-
+        add(btnFuerza);
 
         setVisible(true);
     }
