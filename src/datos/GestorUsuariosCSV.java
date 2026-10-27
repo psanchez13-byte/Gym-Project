@@ -133,6 +133,26 @@ public class GestorUsuariosCSV {
             }
         }
     }
+    public void guardarListaCompletaCSV(List<Usuario> usuarios) {
+        try (BufferedWriter escritor = new BufferedWriter(new FileWriter(RUTA_ARCHIVO, false))) {
+            for (Usuario u : usuarios) {
+                StringBuilder lineaCsv = new StringBuilder();
+                lineaCsv.append(u.getNombre()).append(DELIMITADOR)
+                        .append(u.getMatricula()).append(DELIMITADOR)
+                        .append(u.getContraseña()).append(DELIMITADOR)
+                        .append(u.getEdad()).append(DELIMITADOR)
+                        .append(u.getPeso()).append(DELIMITADOR)
+                        .append(u.getGenero()).append(DELIMITADOR)
+                        .append(u.getNivel()).append(DELIMITADOR)
+                        .append(u.getDiasDisponibles());
+
+                escritor.write(lineaCsv.toString());
+                escritor.newLine();
+            }
+        } catch (IOException e) {
+            System.err.println("Error al sobrescribir la lista completa de usuarios: " + e.getMessage());
+        }
+    }
 
 
 }
