@@ -31,7 +31,7 @@ public class LoginAdminVentana extends JFrame {
 
         //  el logo del gym aquí en Y: 80
 
-        btnRevisarUsuario = Herramientas.crearBoton("Revisar Usuarios ", 150, 260, 200, 40, e -> btnbtnRevisarUsuarioAccion());
+        btnRevisarUsuario = Herramientas.crearBoton("Revicion de Usuarios ", 150, 260, 200, 40, e -> btnRevisarUsuarioAccion());
         btnEditarEjercicio = Herramientas.crearBoton("Editar Ejercicios", 150, 320, 200, 40, e -> btnEditarEjercicioAccion());
         btnCerrarSesion = Herramientas.crearBoton("Cerrar Sesión", 150, 380, 200, 40, e -> btnCerrarSesionAccion());
 
@@ -41,14 +41,18 @@ public class LoginAdminVentana extends JFrame {
 
         setVisible(true);
     }
-    public void btnbtnRevisarUsuarioAccion (){
+    public void btnRevisarUsuarioAccion (){
         VistaAdminUsuarios vistaadmin = new VistaAdminUsuarios();
         vistaadmin.mostrarVentana();
     }
 
     public void btnEditarEjercicioAccion(){
-
+        VistaRevisarEjercicio vistaejercicio = new VistaRevisarEjercicio();
+        vistaejercicio.mostrarVentana();
     }
 
-    public void btnCerrarSesionAccion(){}
+    public void btnCerrarSesionAccion(){
+        this.dispose(); // Destruye el menú actual
+        new VistaLogin().setVisible(true); // Abre un login limpio para el siguiente usuario
+    }
 }
