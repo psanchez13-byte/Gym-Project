@@ -22,9 +22,12 @@ public class VistaInicioDeSesion extends JFrame {
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         getContentPane().setBackground(Color.WHITE);
 
+        JLabel logo = Herramientas.crearImagen("/Recursos/logo-gym2.png", 160, 50, 170, 175);
+        add(logo);
+
         JLabel titulo = new JLabel("Iniciar sesión", SwingConstants.CENTER);
         titulo.setFont(new Font("Arial", Font.BOLD, 24));
-        titulo.setBounds(150, 40, 200, 30);
+        titulo.setBounds(153, 22, 190, 30);
         add(titulo);
 
         JLabel lblMatricula = new JLabel("Matrícula:");
