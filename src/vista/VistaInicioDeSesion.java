@@ -10,7 +10,7 @@ public class VistaInicioDeSesion extends JFrame {
 
     private JTextField cajamatricula;
     private JPasswordField cajacontraseña;
-
+    private JButton btnconfirmar;
     private final loginControlador controlador = new loginControlador();
 
     public void mostrarVentaSesion() {
@@ -30,6 +30,8 @@ public class VistaInicioDeSesion extends JFrame {
         titulo.setBounds(153, 22, 190, 30);
         add(titulo);
 
+
+
         JLabel lblMatricula = new JLabel("Matrícula:");
         lblMatricula.setBounds(150, 200, 200, 20);
         add(lblMatricula);
@@ -46,14 +48,10 @@ public class VistaInicioDeSesion extends JFrame {
         cajacontraseña.setBounds(150, 290, 200, 30);
         add(cajacontraseña);
 
-        JButton btnconfirmar = new JButton("Confirmar");
-        btnconfirmar.setBounds(150, 360, 200, 40);
-        btnconfirmar.addActionListener(e -> iniciarSesion());
-        add(btnconfirmar);
+        btnconfirmar = Herramientas.crearBoton("Confirmar", 150, 360, 200, 40, e -> iniciarSesion());
 
         // Permite iniciar sesión al presionar Enter.
         getRootPane().setDefaultButton(btnconfirmar);
-
         setVisible(true);
     }
 
@@ -68,8 +66,6 @@ public class VistaInicioDeSesion extends JFrame {
             ventanaAdmin.menuAdmin();
             return;
         }
-
-
             if (matricula.isEmpty() || contraseña.isEmpty()) {
             JOptionPane.showMessageDialog(
                     this,

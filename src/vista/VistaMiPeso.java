@@ -59,6 +59,7 @@ public class VistaMiPeso extends JFrame {
         cajaPeso = new JTextField(10);
         formulario.add(cajaPeso);
 
+
         JButton btnGuardar = new JButton("Guardar");
         btnGuardar.addActionListener(e -> guardarPeso());
         formulario.add(btnGuardar);
